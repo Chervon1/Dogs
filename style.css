@@ -7,7 +7,7 @@ header{
     
 }
 body{
-    background-color: powderblue, white, red;
+    background-color: powderblue;
 }
 
 button{
@@ -24,4 +24,18 @@ button{
 .selected{
     background-color: sandybrown;
     color: seashell;
+}
+#comments {
+    width: 80%;
+    border: solid 1px gray;
+}
+
+.comment {
+    border: solid 1px gray;
+    margin: 15px;
+    padding: 15px;
+}
+
+.error {
+    color:red;
 }
