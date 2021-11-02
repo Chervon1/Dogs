@@ -2,10 +2,8 @@
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } 
-            from "https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js";
-import { getFirestore, addDoc, getDocs, collection } 
-            from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js";
+import { getFirestore, addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -26,7 +24,7 @@ const db = getFirestore(app);
 
 // exposed functionality
 
-window.register = function(email, passsword){
+window.signup = function(email, password){
     return createUserWithEmailAndPassword (auth, email, password);
 }
 
@@ -36,10 +34,6 @@ window.isLoggedIn = function(){
 
 window.login = function(email,password){
     return signInWithEmailAndPassword(auth, email, password);
-}
-
-window.register = function(email, passsword){
-    return createUserWithEmailAndPassword (auth, email, password);
 }
 
 window.logout = function(){
