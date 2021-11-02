@@ -81,7 +81,7 @@ window.onload = function(){
     }
 
     $('#registerBtn').onclick = function(){
-        Register( $('#emailReg').value, $('#passwordReg').value )
+        signup( $('#emailReg').value, $('#passwordReg').value )
         .catch( err => $('.error').innerText = err.message );
     }
 
