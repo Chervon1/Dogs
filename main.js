@@ -1,24 +1,24 @@
 const $ = document.querySelector.bind(document)
 
-function showImage(event){
+function showImage(){
     var breed = this.innerText;
-    var priorSelected = $('selected');
+    var priorSelected = $('.selected');
     if(priorSelected){
-        priorSelected.classList = '';
+        priorSelected.className = '';
     }
     this.classList.add('selected');
     fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
-    .then(r=>r.json())
-    .then( data =>{
-       // console.log( data.message)
-       $('#dog').src = data.message;
+    .then( r=>r.json() )
+    .then( data => {
+        // console.log( data.message )
+        $('#dog').src = data.message;
     });
 }
 
-function createButton(txt){
+function createButton( txt ){
     var btn = document.createElement('button');
     btn.innerText = txt;
-    $('#button').appendChild(btn);
+    $('#buttons').appendChild(btn);
     btn.onclick = showImage;
 }
 
@@ -42,6 +42,7 @@ window.onload = function(){
             .forEach( createButton );
     })
 
+    // check if user is logged in
     onLogin( user => {
         if(user){
             //user just logged in
@@ -58,40 +59,39 @@ window.onload = function(){
     //show comments
     forEachComment( createComment );
 
-// button 
+    ////////////////////////////////
+    // button and link functionality
+    $('#loginLink').onclick = function(){
+        $('#loginDiv').style.display = 'block';
+        $('#signupDiv').style.display = 'none';
+    }
 
-$('#loginLink').onclick = function(){
-    $('#loginDiv').style.display = 'block';
-    $('#signupDiv').style.display = 'none';
-}
+    $('#signupLink').onclick = function(){
+        $('#loginDiv').style.display = 'none';
+        $('#signupDiv').style.display = 'block';
+    }
 
-$('#signupLink').onclick = function(){
-    $('#loginDiv').style.display = 'none';
-    $('#signupDiv').style.display = 'block';
-}
+    $('#slattbratha').onclick = function(){
+        logout();
+    }
 
-$('#slattbratha').onclick = function(){
-    logout();
-}
+    $('#loginBtn').onclick = function(){
+        login( $('#email').value, $('#password').value )
+        .catch( err => $('.error').innerText = err.message );
+    }
 
-$('#loginBtn').onclick = function(){
-    login( $('#email').value, $('#password').value )
-    .catch( err => $('.error').innerText = err.message );
-}
+    $('#registerBtn').onclick = function(){
+        signup( $('#emailReg').value, $('#passwordReg').value )
+        .catch( err => $('.error').innerText = err.message );
+    }
 
-$('#registerBtn').onclick = function(){
-    signup( $('#emailReg').value, $('#passwordReg').value )
-    .catch( err => $('.error').innerText = err.message );
-}
-
-$('#addCommentBtn').onclick = function(){
-    addComment( $('#newComment').value )
-    .then( () => {
-        createComment({comment: $('#newComment').value});
-        $('#newComment').value = '';
-    })
-    .catch( err => $('.error').innerText = err.message )
-}
-
+    $('#addCommentBtn').onclick = function(){
+        addComment( $('#newComment').value )
+        .then( () => {
+            createComment({comment: $('#newComment').value});
+            $('#newComment').value = '';
+        })
+        .catch( err => $('.error').innerText = err.message )
+    }
 
 }
