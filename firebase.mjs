@@ -50,7 +50,7 @@ window.onLogin = function( f ){
 // exposed functionality for db
 window.addComment = function(comment){
     return addDoc( collection(db, "comments"), 
-        {comment, posted: serverTimestamp() } );
+        {comment } );
 }
 
 window.forEachComment = async function( f ){
